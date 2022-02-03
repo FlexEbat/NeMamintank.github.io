@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GPG Online</title>
+<script src="openpgp.min.js"></script>
+<style type="text/css">
+    body, button, textarea, pre {
+      font-family: Consolas;
+    }
+
+    textarea {
+      width: 500px;
+      border: 1px solid silver;
+      border-radius: 3px;
+      padding: 0.2rem;
+    }
+
+    button {
+      font-size: 1rem;
+      border: 1px solid black;
+      background: white;
+      cursor: pointer;
+      padding: 3px 5px 1px 5px;
+    }
+
+    pre, textarea, input {
+      font-size: 0.8rem;
+    }
+
+    h2 {
+      margin: 0;
+      font-weight: normal;
+    }
+
+    #private-key {
+      display: none;
+    }
+
+    #private-key.visible {
+      display: block;
+    }
+
+    .hint {
+      font-size: 0.7rem;
+      margin: 0;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+<h1>GPG Online</h1>
+<div class="message">
+<h2>Message to encrypt</h2>
+<textarea rows="5"></textarea>
+</div>
+<div id="public-keys">
+<div class="public-key">
+<h2>Public key</h2>
+<p class="hint">Only the person who has a private key will be able to decrypt the message.</p>
+<textarea rows="5" value="-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+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
+CA==
+=aHVq
+-----END PGP PUBLIC KEY BLOCK-----"></textarea>
+</div>
+</div>
+<div id="private-key">
+<h2>Private Key</h2>
+<textarea rows="5"></textarea>
+<h2>Passphrase</h2>
+<textarea rows="2"></textarea>
+</div>
+<pre id="output"></pre>
+<button id="encrypt">Encrypt</button>
+<button id="add-public-key">Add Public Key</button>
+<button id="add-private-key">Add Private Key</button>
+<script>
+const query = query => document.querySelector(query);
+const queryAll = query => Array.prototype.slice.apply(document.querySelectorAll(query));
+const publicKeyTemplate = query('#public-keys').innerHTML;
+
+query('#add-public-key').addEventListener('click', () => {
+  const element = document.createElement('div');
+  element.innerHTML = publicKeyTemplate;
+  query('#public-keys').appendChild(element);
+});
+
+query('#add-private-key').addEventListener('click', () => {
+  query('#private-key').className = 'visible';
+});
+
+function getKey(textarea, type) {
+  const { value } = textarea;
+  if (!value) {
+    throw new Error(`${type} key missing`);
+  }
+  return openpgp.key.readArmored(value).keys[0];
+}
+
+function getPrivateKey() {
+  if (query('#private-key').className !== 'visible') {
+    return Promise.resolve();
+  }
+
+  const [key, passphrase] = queryAll('#private-key textarea');
+  return openpgp.decryptKey({
+    privateKey: getKey(key, 'private'),
+    passphrase: passphrase.value,
+  })
+  .then(({key}) => key)
+  ;
+}
+
+query('#encrypt').addEventListener('click', () => {
+  getPrivateKey().then(privateKey => {
+    const options = {
+      data: query('.message textarea').value,
+      publicKeys: queryAll('.public-key textarea').map(el => getKey(el, 'public')),
+      privateKey: privateKey,
+      armor: true,
+    };
+
+    return openpgp.encrypt(options).then(results => {
+      query('#output').innerHTML = results.data;
+    });
+  })
+  .catch(err => alert(err.message))
+  ;
+});
+</script>
+<p>
+This page uses industry vetted open source <a href="https://github.com/openpgpjs/openpgpjs">OpenPGP.js</a> and does not submit anything to the server. Everything happens in your browser and is completely lost when you close this page.
+</p>
+</body>
+</html>
